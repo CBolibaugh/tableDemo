@@ -1,0 +1,202 @@
+---
+title: "GTA study"
+author: ANONYMISED
+date: "6th Sept 2021"
+output: html_document
+---
+
+# Load in packages for session (note more than needed for analyses below)
+
+```{r warning=F, message=F, echo=T}
+
+# Please install the packages below if needed
+library(tidyverse)
+library(broom)
+library(tibble)
+library(QuantPsyc)
+library(Hmisc)
+library(car)
+library(broom)
+library(lme4)
+library(lmerTest)
+library(afex)
+library(Matrix)
+library(MuMIn)
+library(piecewiseSEM)
+library(ggbeeswarm)
+library(tidyverse)
+library(ggplot2)
+library(ggtext)
+library(ordinal)
+library(mvord)
+library(mixor)
+library(rcompanion)
+library(gridExtra)
+library(cowplot)
+library(ggplot2)
+library(hrbrthemes)
+library(dplyr)
+library(tidyr)
+library(viridis)
+library(psych)
+library(psych)
+library(MBESS)
+library(ufs)
+library(GPArotation)
+library(EnvStats)
+library(olsrr)
+library(coefficientalpha)
+
+```
+
+# Load in the data
+
+```{r warning=F, message=F, echo=T}
+
+# Load in the GTA_data.csv dataset
+GTA_data <- read_csv("~/example_GTA_data.csv")
+
+# Convert characters to factors
+GTA_data <- as.data.frame(strings2factors(GTA_data))
+
+# Change numeric variables back to numeric
+GTA_data$Q3.1_1_agency_express_ideas_opinions_teaching <- as.numeric(GTA_data$Q3.1_1_agency_express_ideas_opinions_teaching)	
+GTA_data$Q3.1_2_agency_free_do_job <- as.numeric(GTA_data$Q3.1_2_agency_free_do_job)	
+GTA_data$Q3.1_3_agency_design_materials <- as.numeric(GTA_data$Q3.1_3_agency_design_materials)	
+GTA_data$Q3.1_4_SELF_EFFICACY_MEAN <- as.numeric(GTA_data$Q3.1_4_SELF_EFFICACY_MEAN)
+## relatedness
+GTA_data$Q3.2_1_relationships_students <- as.numeric(GTA_data$Q3.2_1_relationships_students)
+GTA_data$Q3.2_2_relationships_GTAs <- as.numeric(GTA_data$Q3.2_2_relationships_GTAs)
+GTA_data$Q3.2_3_relationships_module_lecturers <- as.numeric(GTA_data$Q3.2_3_relationships_module_lecturers)	
+GTA_data$Q3.2_4_relationships_administrators <- as.numeric(GTA_data$Q3.2_4_relationships_administrators)	
+GTA_data$Q3.2_5_relationships_part_community <- as.numeric(GTA_data$Q3.2_5_relationships_part_community)
+GTA_data$Q3.2_6_relationships_close_friends <- as.numeric(GTA_data$Q3.2_6_relationships_close_friends)
+GTA_data$Q3.2_7_RELATEDNESS_MEAN <- as.numeric(GTA_data$Q3.2_7_RELATEDNESS_MEAN)
+## autonomy/competence
+GTA_data$Q3.3_1_competence_explain_students <- as.numeric(GTA_data$Q3.3_1_competence_explain_students)	
+GTA_data$Q3.3_2_competence_craft_student_questions <- as.numeric(GTA_data$Q3.3_2_competence_craft_student_questions)	
+GTA_data$Q3.3_3_competence_respond_students <- as.numeric(GTA_data$Q3.3_3_competence_respond_students)
+GTA_data$Q3.4_1_competence_strategy_in_person <- as.numeric(GTA_data$Q3.4_1_competence_strategy_in_person)	
+GTA_data$Q3.4_2_competence_strategy_online <- as.numeric(GTA_data$Q3.4_2_competence_strategy_online)
+GTA_data$Q3.5_1_competence_gauge_comprehension_in_person <- as.numeric(GTA_data$Q3.5_1_competence_gauge_comprehension_in_person)
+GTA_data$Q3.5_2_competence_gauge_comprehension_online <- as.numeric(GTA_data$Q3.5_2_competence_gauge_comprehension_online)	
+GTA_data$Q3.6_1_competence_student_belief_in_person <- as.numeric(GTA_data$Q3.6_1_competence_student_belief_in_person)
+GTA_data$Q3.6_2_competence_student_belief_online <- as.numeric(GTA_data$Q3.6_2_competence_student_belief_online)
+GTA_data$Q3.7_1_competence_students_critical_in_person <- as.numeric(GTA_data$Q3.7_1_competence_students_critical_in_person)
+GTA_data$Q3.7_2_competence_students_critical_online <- as.numeric(GTA_data$Q3.7_2_competence_students_critical_online)	
+GTA_data$Q3.7_3_COMPETENCE_MEAN <- as.numeric(GTA_data$Q3.7_3_COMPETENCE_MEAN)
+# practice variables
+GTA_data$Q3.10_1_live_poll <- as.numeric(GTA_data$Q3.10_1_live_poll)
+GTA_data$Q3.10_2_breakout_rooms <- as.numeric(GTA_data$Q3.10_2_breakout_rooms)	
+GTA_data$Q3.10_3_online_quizzes <- as.numeric(GTA_data$Q3.10_3_online_quizzes)	
+GTA_data$Q3.10_4_digital_wall <- as.numeric(GTA_data$Q3.10_4_digital_wall)
+GTA_data$Q3.10_5_shared_docs <- as.numeric(GTA_data$Q3.10_5_shared_docs)
+GTA_data$Q3.10_6_discussion_boards <- as.numeric(GTA_data$Q3.10_6_discussion_boards)	
+GTA_data$Q3.10_7_online_assignments <- as.numeric(GTA_data$Q3.10_7_online_assignments)
+GTA_data$Q3.10_8_other_provided <- as.numeric(GTA_data$Q3.10_8_other_provided)
+GTA_data$Q3.10_9_technology_use_count <- as.numeric(GTA_data$Q3.10_9_technology_use_count)
+
+# Check dataset
+GTA_data
+
+```
+
+# Descriptive statistics: Practice by home vs international (EU/non, L1/L2)
+
+```{r warning=F, message=F, echo=T}
+
+# Remove any missing data from practice analyses (remove 72% or less complete, those who stopped before identity questions)
+GTA_data_identity <- GTA_data %>%
+  filter(deletion_type == 0)
+
+# Counts for home vs international types
+home_int_count <-  GTA_data_identity %>%
+  count(Q2.9_student_type, Q2.10_language)
+home_int_count
+
+# Overall tech use: Summary statistics for home vs international
+overall_tech <-  GTA_data_identity %>%
+  group_by(Q2.9_student_type, Q2.10_language) %>%
+  summarise(mean = round(mean(Q3.10_9_technology_use_count, na.rm = TRUE),2), sd = round(sd(Q3.10_9_technology_use_count, na.rm = TRUE),2), median = median(Q3.10_9_technology_use_count, na.rm = TRUE), iqr = IQR(Q3.10_9_technology_use_count, na.rm = TRUE), lower_quart =    quantile(Q3.10_9_technology_use_count, 0.25, na.rm = TRUE), upper_quart = quantile(Q3.10_9_technology_use_count, 0.75, na.rm = TRUE))
+overall_tech
+
+# Live poll: Home vs international types
+poll_tech <- GTA_data_identity %>%
+  count(Q2.9_student_type, Q2.10_language, Q3.10_1_live_poll)
+poll_tech
+
+# Breakout rooms: Home vs international types
+breakout_tech <- GTA_data_identity %>%
+  count(Q2.9_student_type, Q2.10_language, Q3.10_2_breakout_rooms)
+breakout_tech
+
+# Online quizzes: Home vs international types
+quiz_tech <- GTA_data_identity %>%
+  count(Q2.9_student_type, Q2.10_language, Q3.10_3_online_quizzes)
+quiz_tech
+
+# Digital wall: Home vs international types
+wall_tech <- GTA_data_identity %>%
+  count(Q2.9_student_type, Q2.10_language, Q3.10_4_digital_wall)
+wall_tech
+
+# Shared docs: Home vs international types
+doc_tech <- GTA_data_identity %>%
+  count(Q2.9_student_type, Q2.10_language, Q3.10_5_shared_docs)
+doc_tech
+
+# Discussion boards: Home vs international types
+discussion_tech <- GTA_data_identity %>%
+  count(Q2.9_student_type, Q2.10_language, Q3.10_6_discussion_boards)
+discussion_tech
+
+# Online assignments: Home vs international types
+assignment_tech <- GTA_data_identity %>%
+  count(Q2.9_student_type, Q2.10_language, Q3.10_7_online_assignments)
+assignment_tech
+
+# Other: Home vs international types
+other_tech <- GTA_data_identity %>%
+  count(Q2.9_student_type, Q2.10_language, Q3.10_8_other_provided)
+other_tech
+
+```
+
+Write out all tech results (messy solution 1)
+
+```{r warning=F, message=F, echo=T}
+
+# To write out to csv file (messy solution 1)
+#write.csv(home_int_count, 'home_int_count.csv')
+#write.csv(overall_tech, 'overall_tech.csv')
+#write.csv(poll_tech, 'poll_tech.csv')
+#write.csv(breakout_tech, 'breakout_tech.csv')
+#write.csv(quiz_tech, 'quiz_tech.csv')
+#write.csv(wall_tech, 'wall_tech.csv')
+#write.csv(doc_tech, 'doc_tech.csv')
+#write.csv(discussion_tech, 'discussion_tech.csv')
+#write.csv(assignment_tech, 'assignment_tech.csv')
+#write.csv(other_tech, 'other_tech.csv')
+
+```
+
+Write out all tech results (messy solution 2)
+
+```{r warning=F, message=F, echo=T}
+
+sink("tech_results.csv")
+print(home_int_count)
+print(overall_tech)
+print(poll_tech)
+print(breakout_tech)
+print(quiz_tech)
+print(wall_tech)
+print(doc_tech)
+print(discussion_tech)
+print(assignment_tech)
+print(other_tech)
+sink()
+
+```
+
+

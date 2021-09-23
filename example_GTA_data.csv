@@ -1,0 +1,204 @@
+Participant,deletion_type,Q2.9_student_type,Q2.10_language,Q3.10_1_live_poll,Q3.10_2_breakout_rooms,Q3.10_3_online_quizzes,Q3.10_4_digital_wall,Q3.10_5_shared_docs,Q3.10_6_discussion_boards,Q3.10_7_online_assignments,Q3.10_8_other_provided,Q3.10_9_technology_use_count
+1,0,Home student,GTA whose English is the first language (L1 GTA),1,1,1,1,1,0,0,0,5
+2,0,Home student,GTA whose English is the first language (L1 GTA),0,1,1,0,1,0,0,0,3
+3,0,non-EU international student,GTA whose English is the first language (L1 GTA),1,1,0,0,0,1,0,0,3
+4,0,Home student,GTA whose English is the first language (L1 GTA),1,1,0,0,1,0,0,0,3
+5,0,Home student,GTA whose English is the first language (L1 GTA),0,1,0,0,1,0,0,0,2
+6,0,Home student,GTA whose English is the first language (L1 GTA),0,1,1,1,1,0,0,0,4
+7,0,Home student,GTA whose English is the first language (L1 GTA),0,1,0,0,1,0,0,0,2
+8,0,non-EU international student,GTA whose English is the second language (L2 GTA),0,0,0,0,1,0,0,0,1
+9,0,Home student,GTA whose English is the first language (L1 GTA),0,0,0,0,0,0,0,0,0
+10,0,non-EU international student,GTA whose English is the first language (L1 GTA),1,1,0,0,1,0,0,0,3
+11,0,non-EU international student,GTA whose English is the second language (L2 GTA),1,1,0,0,1,0,0,0,3
+12,0,non-EU international student,GTA whose English is the second language (L2 GTA),0,1,0,0,0,0,0,0,1
+13,0,Home student,GTA whose English is the first language (L1 GTA),1,1,0,1,1,1,0,0,5
+14,0,Home student,GTA whose English is the first language (L1 GTA),0,1,1,0,1,0,0,0,3
+15,0,Home student,GTA whose English is the first language (L1 GTA),0,1,1,0,0,0,0,0,2
+16,0,EU student,GTA whose English is the second language (L2 GTA),0,1,0,0,0,0,0,0,1
+17,0,EU student,GTA whose English is the second language (L2 GTA),1,1,1,1,1,0,0,0,5
+18,0,Home student,GTA whose English is the first language (L1 GTA),0,0,0,0,1,0,0,0,1
+19,0,Home student,GTA whose English is the first language (L1 GTA),1,1,1,1,1,1,0,0,6
+20,0,EU student,GTA whose English is the second language (L2 GTA),0,1,0,1,1,1,0,0,4
+21,0,Home student,GTA whose English is the first language (L1 GTA),0,0,0,0,0,0,0,0,0
+22,0,Home student,GTA whose English is the first language (L1 GTA),0,0,0,0,0,0,0,0,0
+23,0,Home student,GTA whose English is the first language (L1 GTA),1,1,1,1,1,0,0,0,5
+24,0,non-EU international student,GTA whose English is the first language (L1 GTA),1,1,0,0,1,1,0,0,4
+25,0,Home student,GTA whose English is the first language (L1 GTA),0,1,0,0,1,0,0,0,2
+26,0,Home student,GTA whose English is the first language (L1 GTA),0,1,0,0,0,0,0,0,1
+27,0,Home student,GTA whose English is the first language (L1 GTA),0,1,0,0,0,0,0,0,1
+28,0,EU student,GTA whose English is the second language (L2 GTA),1,1,1,0,1,0,0,0,4
+29,0,Home student,GTA whose English is the first language (L1 GTA),0,1,0,1,0,1,0,0,3
+30,0,Home student,GTA whose English is the first language (L1 GTA),0,1,0,0,1,1,0,0,3
+31,0,Home student,GTA whose English is the first language (L1 GTA),0,0,0,0,1,1,0,1,3
+32,0,Home student,GTA whose English is the first language (L1 GTA),1,0,0,1,0,0,0,0,2
+33,0,Home student,GTA whose English is the first language (L1 GTA),1,1,0,1,0,0,0,0,3
+34,0,EU student,GTA whose English is the first language (L1 GTA),0,1,0,0,1,1,0,0,3
+35,0,Home student,GTA whose English is the first language (L1 GTA),1,1,1,1,1,1,0,1,7
+36,0,Home student,GTA whose English is the first language (L1 GTA),0,1,0,0,1,1,0,0,3
+37,0,Home student,GTA whose English is the first language (L1 GTA),1,1,0,0,1,0,0,0,3
+38,0,Home student,GTA whose English is the first language (L1 GTA),0,0,0,0,0,1,0,0,1
+39,0,non-EU international student,GTA whose English is the second language (L2 GTA),0,0,0,1,1,0,0,0,2
+40,0,Home student,GTA whose English is the first language (L1 GTA),1,1,1,1,1,1,0,0,6
+41,0,Home student,GTA whose English is the first language (L1 GTA),1,1,0,0,1,1,0,0,4
+42,0,Home student,GTA whose English is the first language (L1 GTA),1,1,0,0,1,1,0,0,4
+43,1,Home student,GTA whose English is the first language (L1 GTA),0,0,0,0,0,0,0,0,0
+44,2,Home student,GTA whose English is the first language (L1 GTA),0,0,0,0,0,0,0,0,0
+45,0,Home student,GTA whose English is the first language (L1 GTA),1,1,0,1,0,0,0,0,3
+46,1,Home student,GTA whose English is the first language (L1 GTA),0,0,0,0,0,0,0,0,0
+47,0,Home student,GTA whose English is the first language (L1 GTA),1,1,0,1,1,0,0,0,4
+48,0,Home student,GTA whose English is the first language (L1 GTA),1,1,0,0,0,1,0,1,4
+49,0,Home student,GTA whose English is the first language (L1 GTA),1,1,0,1,0,0,0,0,3
+50,0,Home student,GTA whose English is the first language (L1 GTA),0,0,0,0,0,0,0,0,0
+51,0,Home student,GTA whose English is the first language (L1 GTA),0,1,0,0,0,0,0,0,1
+52,0,non-EU international student,GTA whose English is the first language (L1 GTA),0,0,0,0,1,0,0,0,1
+53,0,EU student,GTA whose English is the second language (L2 GTA),0,0,0,0,0,0,0,1,1
+54,0,Home student,GTA whose English is the first language (L1 GTA),1,1,0,1,1,0,0,0,4
+55,0,Home student,GTA whose English is the first language (L1 GTA),1,1,0,1,1,0,0,0,4
+56,0,Home student,GTA whose English is the first language (L1 GTA),1,1,1,1,1,1,0,0,6
+57,0,Home student,GTA whose English is the first language (L1 GTA),1,1,0,0,1,1,0,0,4
+58,0,non-EU international student,GTA whose English is the first language (L1 GTA),1,1,1,0,1,1,0,0,5
+59,0,Home student,GTA whose English is the first language (L1 GTA),1,0,0,1,1,0,0,0,3
+60,0,Home student,GTA whose English is the first language (L1 GTA),1,1,1,1,1,0,0,0,5
+61,0,non-EU international student,GTA whose English is the first language (L1 GTA),0,1,0,1,1,0,0,0,3
+62,0,EU student,GTA whose English is the second language (L2 GTA),0,1,0,1,1,0,0,0,3
+63,0,Home student,GTA whose English is the first language (L1 GTA),1,1,0,1,0,0,0,0,3
+64,0,EU student,GTA whose English is the second language (L2 GTA),0,0,0,0,1,0,0,0,1
+65,0,Home student,GTA whose English is the first language (L1 GTA),1,1,0,1,0,0,0,0,3
+66,0,Home student,GTA whose English is the first language (L1 GTA),0,0,0,0,0,1,0,0,1
+67,0,EU student,GTA whose English is the second language (L2 GTA),0,1,0,0,1,0,0,0,2
+68,0,Home student,GTA whose English is the first language (L1 GTA),0,1,0,0,1,0,0,0,2
+69,0,EU student,GTA whose English is the second language (L2 GTA),0,1,0,0,0,0,0,0,1
+70,0,Home student,GTA whose English is the first language (L1 GTA),0,1,0,1,1,1,0,0,4
+71,0,Home student,GTA whose English is the first language (L1 GTA),1,1,1,1,1,0,0,0,5
+72,0,EU student,GTA whose English is the second language (L2 GTA),1,1,1,1,1,1,0,0,6
+73,0,EU student,GTA whose English is the first language (L1 GTA),0,1,0,0,0,0,0,0,1
+74,0,Home student,GTA whose English is the first language (L1 GTA),0,1,1,0,1,1,0,0,4
+75,0,EU student,GTA whose English is the second language (L2 GTA),1,0,0,0,0,1,0,0,2
+76,0,EU student,GTA whose English is the second language (L2 GTA),1,1,1,1,1,1,0,0,6
+77,0,Home student,GTA whose English is the first language (L1 GTA),0,1,0,0,1,0,0,0,2
+78,1,non-EU international student,GTA whose English is the second language (L2 GTA),0,0,0,0,0,0,0,0,0
+79,3,Home student,GTA whose English is the first language (L1 GTA),0,0,0,0,0,0,0,0,0
+80,4,Home student,GTA whose English is the first language (L1 GTA),0,0,0,0,0,0,0,0,0
+81,5,,,0,0,0,0,0,0,0,0,0
+82,0,EU student,GTA whose English is the second language (L2 GTA),1,1,0,0,0,0,0,0,2
+83,1,Home student,GTA whose English is the first language (L1 GTA),0,0,0,0,0,0,0,0,0
+84,1,Home student,GTA whose English is the first language (L1 GTA),0,0,0,0,0,0,0,0,0
+85,1,Home student,GTA whose English is the first language (L1 GTA),0,0,0,0,0,0,0,0,0
+86,4,Home student,GTA whose English is the first language (L1 GTA),0,0,0,0,0,0,0,0,0
+87,1,non-EU international student,GTA whose English is the first language (L1 GTA),0,0,0,0,0,0,0,0,0
+88,0,Home student,GTA whose English is the first language (L1 GTA),1,1,1,1,1,0,0,0,5
+89,0,EU student,GTA whose English is the second language (L2 GTA),0,1,0,0,0,0,0,0,1
+90,0,Home student,GTA whose English is the first language (L1 GTA),0,1,0,0,1,0,0,0,2
+91,0,Home student,GTA whose English is the first language (L1 GTA),0,0,0,0,0,0,0,0,0
+92,0,EU student,GTA whose English is the second language (L2 GTA),0,0,0,0,0,0,0,0,0
+93,0,Home student,GTA whose English is the first language (L1 GTA),1,1,0,0,1,0,0,0,3
+94,0,Home student,GTA whose English is the first language (L1 GTA),0,1,0,1,1,0,0,0,3
+95,0,Home student,GTA whose English is the first language (L1 GTA),1,1,0,1,1,0,0,0,4
+96,0,Home student,GTA whose English is the first language (L1 GTA),1,1,1,0,1,1,0,1,6
+97,0,Home student,GTA whose English is the first language (L1 GTA),1,1,1,0,1,1,0,0,5
+98,0,Home student,GTA whose English is the first language (L1 GTA),1,1,1,1,0,1,0,0,5
+99,0,Home student,GTA whose English is the first language (L1 GTA),0,0,1,0,0,1,0,0,2
+100,0,Home student,GTA whose English is the first language (L1 GTA),0,1,0,0,0,0,0,0,1
+101,0,EU student,GTA whose English is the second language (L2 GTA),1,1,1,0,0,0,0,0,3
+102,0,non-EU international student,GTA whose English is the first language (L1 GTA),0,1,0,0,0,0,0,0,1
+103,0,Home student,GTA whose English is the first language (L1 GTA),1,1,1,0,1,0,0,0,4
+104,0,Home student,GTA whose English is the first language (L1 GTA),0,1,1,0,1,0,0,0,3
+105,0,EU student,GTA whose English is the second language (L2 GTA),0,1,1,0,1,0,0,0,3
+106,0,Home student,GTA whose English is the first language (L1 GTA),0,1,0,0,0,0,0,0,1
+107,0,EU student,GTA whose English is the second language (L2 GTA),0,1,0,0,0,0,0,0,1
+108,0,non-EU international student,GTA whose English is the first language (L1 GTA),0,1,0,0,1,1,0,0,3
+109,0,Home student,GTA whose English is the first language (L1 GTA),0,1,0,0,0,1,0,0,2
+110,0,Home student,GTA whose English is the first language (L1 GTA),1,1,1,0,0,1,0,0,4
+111,0,EU student,GTA whose English is the second language (L2 GTA),0,1,0,0,0,0,0,0,1
+112,0,non-EU international student,GTA whose English is the second language (L2 GTA),1,1,1,0,1,1,0,0,5
+113,0,Home student,GTA whose English is the first language (L1 GTA),0,0,0,0,1,0,0,0,1
+114,0,Home student,GTA whose English is the first language (L1 GTA),0,0,0,0,0,0,0,0,0
+115,0,EU student,GTA whose English is the second language (L2 GTA),0,1,0,0,0,0,0,0,1
+116,0,Home student,GTA whose English is the first language (L1 GTA),0,0,0,0,0,0,0,0,0
+117,0,Home student,GTA whose English is the first language (L1 GTA),1,1,0,1,1,0,0,0,4
+118,0,Home student,GTA whose English is the first language (L1 GTA),0,0,0,0,0,0,0,0,0
+119,0,Home student,GTA whose English is the first language (L1 GTA),0,0,0,0,0,0,0,0,0
+120,0,Home student,GTA whose English is the first language (L1 GTA),0,1,0,0,0,0,0,0,1
+121,0,EU student,GTA whose English is the second language (L2 GTA),1,1,0,1,1,0,0,0,4
+122,0,Home student,GTA whose English is the first language (L1 GTA),0,0,0,0,0,1,0,0,1
+123,0,non-EU international student,GTA whose English is the second language (L2 GTA),0,1,0,0,0,0,0,0,1
+124,0,non-EU international student,GTA whose English is the second language (L2 GTA),0,1,0,0,0,0,0,0,1
+125,0,non-EU international student,GTA whose English is the second language (L2 GTA),0,1,0,1,0,1,0,0,3
+126,0,non-EU international student,GTA whose English is the second language (L2 GTA),0,1,1,0,0,0,0,0,2
+127,0,EU student,GTA whose English is the second language (L2 GTA),1,1,1,0,0,0,0,0,3
+128,0,Home student,GTA whose English is the first language (L1 GTA),0,1,0,0,1,1,0,0,3
+129,0,EU student,GTA whose English is the second language (L2 GTA),0,1,0,1,1,0,0,0,3
+130,0,Home student,GTA whose English is the first language (L1 GTA),0,0,0,0,1,1,0,0,2
+131,0,Home student,GTA whose English is the first language (L1 GTA),1,1,1,1,1,1,0,0,6
+132,0,EU student,GTA whose English is the second language (L2 GTA),1,1,0,0,0,0,0,0,2
+133,0,Home student,GTA whose English is the first language (L1 GTA),1,1,0,1,0,0,0,0,3
+134,0,non-EU international student,GTA whose English is the first language (L1 GTA),0,1,0,0,0,0,0,0,1
+135,0,Home student,GTA whose English is the first language (L1 GTA),0,1,0,0,0,0,0,0,1
+136,0,Home student,GTA whose English is the first language (L1 GTA),0,1,0,0,1,0,0,1,3
+137,0,non-EU international student,GTA whose English is the second language (L2 GTA),1,1,1,1,1,0,0,0,5
+138,0,Home student,GTA whose English is the first language (L1 GTA),1,1,0,0,0,0,0,0,2
+139,0,Home student,GTA whose English is the first language (L1 GTA),1,1,1,0,1,1,0,0,5
+140,0,non-EU international student,GTA whose English is the second language (L2 GTA),1,1,0,1,0,0,0,0,3
+141,0,non-EU international student,GTA whose English is the first language (L1 GTA),1,1,1,0,1,1,0,0,5
+142,0,Home student,GTA whose English is the first language (L1 GTA),0,1,0,0,1,1,0,0,3
+143,0,Home student,GTA whose English is the first language (L1 GTA),0,1,0,0,0,0,0,0,1
+144,0,Home student,GTA whose English is the first language (L1 GTA),0,0,0,0,1,1,0,0,2
+145,0,Home student,GTA whose English is the first language (L1 GTA),1,1,1,0,0,0,0,0,3
+146,0,EU student,GTA whose English is the second language (L2 GTA),0,0,0,0,0,0,0,1,1
+147,4,non-EU international student,GTA whose English is the second language (L2 GTA),0,0,0,0,0,0,0,0,0
+148,0,EU student,GTA whose English is the first language (L1 GTA),0,0,0,0,0,0,0,0,0
+149,3,Home student,GTA whose English is the first language (L1 GTA),0,0,0,0,0,0,0,0,0
+150,0,Home student,GTA whose English is the first language (L1 GTA),0,1,0,0,0,0,0,0,1
+151,0,non-EU international student,GTA whose English is the first language (L1 GTA),0,1,0,0,1,0,0,0,2
+152,0,Home student,GTA whose English is the first language (L1 GTA),1,1,0,1,1,1,0,0,5
+153,0,Home student,GTA whose English is the first language (L1 GTA),0,1,0,0,1,0,0,0,2
+154,0,Home student,GTA whose English is the first language (L1 GTA),0,1,0,0,1,1,0,0,3
+155,0,Home student,GTA whose English is the first language (L1 GTA),1,1,0,1,1,0,0,0,4
+156,0,EU student,GTA whose English is the second language (L2 GTA),1,1,0,0,1,1,0,0,4
+157,0,Home student,GTA whose English is the first language (L1 GTA),1,1,1,1,1,1,0,0,6
+158,0,Home student,GTA whose English is the first language (L1 GTA),1,1,0,1,1,0,0,0,4
+159,0,non-EU international student,GTA whose English is the first language (L1 GTA),1,1,0,0,1,0,0,0,3
+160,0,Home student,GTA whose English is the first language (L1 GTA),1,1,0,1,1,1,0,0,5
+161,1,non-EU international student,GTA whose English is the second language (L2 GTA),0,0,0,0,0,0,0,0,0
+162,0,EU student,GTA whose English is the second language (L2 GTA),1,1,0,0,0,0,0,0,2
+163,0,Home student,GTA whose English is the first language (L1 GTA),1,1,0,0,1,1,0,0,4
+164,0,Home student,GTA whose English is the first language (L1 GTA),1,0,1,1,1,1,0,0,5
+165,1,non-EU international student,GTA whose English is the first language (L1 GTA),0,0,0,0,0,0,0,0,0
+166,4,Home student,GTA whose English is the first language (L1 GTA),0,0,0,0,0,0,0,0,0
+167,0,Home student,GTA whose English is the first language (L1 GTA),1,1,0,1,0,1,0,0,4
+168,2,EU student,GTA whose English is the second language (L2 GTA),0,0,0,0,0,0,0,0,0
+169,1,EU student,GTA whose English is the second language (L2 GTA),0,0,0,0,0,0,0,0,0
+170,0,Home student,GTA whose English is the first language (L1 GTA),0,1,0,1,1,1,0,0,4
+171,1,Home student,GTA whose English is the first language (L1 GTA),0,0,0,0,0,0,0,0,0
+172,1,EU student,GTA whose English is the second language (L2 GTA),0,0,0,0,0,0,0,0,0
+173,0,Home student,GTA whose English is the first language (L1 GTA),1,1,0,0,1,1,0,0,4
+174,0,Home student,GTA whose English is the first language (L1 GTA),1,1,1,0,1,0,0,0,4
+175,0,Home student,GTA whose English is the first language (L1 GTA),1,1,1,1,1,1,0,0,6
+176,0,non-EU international student,GTA whose English is the second language (L2 GTA),0,0,0,0,0,0,0,0,0
+177,0,Home student,GTA whose English is the first language (L1 GTA),1,1,0,0,0,0,0,1,3
+178,4,EU student,GTA whose English is the second language (L2 GTA),0,0,0,0,0,0,0,0,0
+179,0,EU student,GTA whose English is the first language (L1 GTA),0,0,0,0,0,0,0,0,0
+180,0,Home student,GTA whose English is the first language (L1 GTA),0,1,0,0,1,1,0,0,3
+181,0,Home student,GTA whose English is the first language (L1 GTA),1,1,1,1,0,1,0,1,6
+182,0,EU student,GTA whose English is the second language (L2 GTA),0,0,0,0,0,0,0,0,0
+183,1,Home student,GTA whose English is the first language (L1 GTA),0,0,0,0,0,0,0,0,0
+184,2,Home student,GTA whose English is the first language (L1 GTA),0,0,0,0,0,0,0,0,0
+185,1,non-EU international student,GTA whose English is the first language (L1 GTA),0,0,0,0,0,0,0,0,0
+186,0,Home student,GTA whose English is the first language (L1 GTA),1,1,0,0,1,1,0,0,4
+187,0,Home student,GTA whose English is the first language (L1 GTA),0,0,1,1,0,1,0,1,4
+188,0,non-EU international student,GTA whose English is the first language (L1 GTA),1,1,1,0,0,0,0,0,3
+189,0,Home student,GTA whose English is the first language (L1 GTA),1,1,0,0,1,1,0,0,4
+190,0,Home student,GTA whose English is the first language (L1 GTA),1,1,0,1,1,0,0,0,4
+191,0,Home student,GTA whose English is the first language (L1 GTA),1,1,0,1,1,0,0,0,4
+192,0,Home student,GTA whose English is the first language (L1 GTA),1,1,1,1,1,0,0,0,5
+193,0,Home student,GTA whose English is the first language (L1 GTA),1,1,0,1,1,1,0,0,5
+194,0,non-EU international student,GTA whose English is the first language (L1 GTA),1,0,0,0,0,0,0,0,1
+195,0,EU student,GTA whose English is the second language (L2 GTA),0,1,0,1,0,1,0,1,4
+196,0,Home student,GTA whose English is the first language (L1 GTA),1,1,1,0,1,0,0,0,4
+197,0,Home student,GTA whose English is the first language (L1 GTA),0,1,0,1,1,1,0,0,4
+198,0,Home student,GTA whose English is the first language (L1 GTA),0,0,0,0,0,0,0,0,0
+199,0,EU student,GTA whose English is the first language (L1 GTA),1,1,1,1,1,1,0,0,6
+200,0,Home student,GTA whose English is the first language (L1 GTA),1,0,0,0,1,1,0,0,3
+201,0,EU student,GTA whose English is the second language (L2 GTA),0,1,0,0,1,0,0,0,2
+202,2,Home student,GTA whose English is the first language (L1 GTA),,,,,,,,,
+203,4,Home student,GTA whose English is the first language (L1 GTA),,,,,,,,,
