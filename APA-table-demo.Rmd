@@ -1,0 +1,145 @@
+---
+title: "APA table demo"
+author: "Cylcia Bolibaugh"
+date: "23/09/2021"
+output: html_notebook
+      
+---
+
+```{r setup}
+knitr::opts_chunk$set(echo = TRUE,  message=FALSE, warning=FALSE)
+# install any missing packages first
+library("papaja")
+library("tidyverse")
+library("here")
+library("flextable")
+```
+
+```{r load_data}
+# Load in the GTA_data.csv dataset
+GTA_data <- read_csv(here("example_GTA_data.csv")) # have used 'here' package to make relative path loading work
+
+```
+
+```{r set_classes}
+# Change variable classes
+GTA_data$Q2.9_student_type <- as.factor(GTA_data$Q2.9_student_type)
+GTA_data$Q2.10_language <- as.factor(GTA_data$Q2.10_language)
+GTA_data$Participant <- as.factor(GTA_data$Participant)
+GTA_data$deletion_type <- as.factor(GTA_data$deletion_type)
+```
+A friend wants to generate his APA style summary tables from r to a word output. An example of his desired output table is in the repo (example_APA analysis.xls) 
+
+## Overall aim
+In order to generate the table, I will need to extract the numerator, denominator, derive the percent, and glue these into a single cell, for each question item. I will then need to reshape the dataframe so it is in the desired format, with values displayed under nested group headings. Finally, I will use a table package to format headers etc and render in word/pdf.
+
+
+### pseudocode - what needs to happen
+1) extract denominators - tally the total number of cases grouped by student type, and language and assign to a df
+2) extract numerators - tally number of cases for each variable when grouped by student type, and language, and assign to a df
+3) derive the percentage - join the two dataframes and create a new variable (percent) using mutate
+4) 'glue' all values into a single cell - concatenate the numerator, denominator and percent
+5) run this workflow across all Q.10 variables
+6) reshape the dataframe so it is in the desired format - pivot from wide to long to wide again  
+7) send to flextable
+
+```{r crosstabs_tally}
+# Create a small df holding crosstab totals with values filtered
+groupCount <- GTA_data %>% 
+  filter(deletion_type == 0) %>% 
+  group_by(Q2.9_student_type, Q2.10_language) %>% tally()
+
+```
+
+```{r occurrence_tally}
+# Tally the number of occurrences for each cross-tabs cell, using purrr style notation
+Q10Tally <- GTA_data %>%
+  filter(deletion_type == 0) %>% 
+  group_by(Q2.9_student_type, Q2.10_language) %>%
+  summarise(across(starts_with("Q3.10"),  ~ sum(.x, na.rm = TRUE), .names = "{.col}"))
+```
+
+```{r output_join}
+# Join dataframes, generate the final output column with proportion and percentage in brackets, with the prefix concat_, assign to new df called Q10
+Q10 <- right_join(Q10Tally, groupCount) %>%
+  mutate(across(starts_with("Q3.10"),
+                ~paste0(.x, "/", n, " (", round(.x/n*100),"%",")"),
+                .names = "concat_{.col}"))
+
+
+```
+
+
+```{r prop_demo}
+# Demonstrate how to generate a variable called prop_ that contains the tallied response over the numerator - this step has been incorporated in previous chunk, but there's a lot going on...
+Q10 <- Q10 %>%
+  mutate(across(starts_with("Q3.10"),
+                ~paste0(.x, "/", n),
+                .names = "prop_{.col}"))
+
+
+```
+
+
+
+```{r output_reshape}
+# First get data in long format, and then regroup in wide by the two grouping variables
+wideQ10 <- Q10 %>% select(Q2.9_student_type, Q2.10_language, starts_with("concat")) %>%
+  pivot_longer(
+    cols = starts_with("concat")
+  ) %>% pivot_wider(
+    names_from = c(Q2.9_student_type, Q2.10_language)
+    ) 
+
+
+# Remove concat_ prefix with stringr package
+wideQ10$name <- str_remove(wideQ10$name, "concat_")
+
+# Remove unused item.
+wideQ10 <- wideQ10 %>% filter(name != 'Q3.10_9_technology_use_count')
+```
+
+
+```{r create_flextable}
+
+# Use flextable package: https://ardata-fr.github.io/flextable-book/index.html
+
+# Create table
+myft <- flextable(wideQ10)
+
+# Change column headers
+myft <- set_header_labels(myft, 
+                          name = "", 
+    `EU student_GTA whose English is the first language (L1 GTA)` = "L1", 
+    `EU student_GTA whose English is the second language (L2 GTA)` = "L2",
+    `Home student_GTA whose English is the first language (L1 GTA)` = "L1",
+    `non-EU international student_GTA whose English is the first language (L1 GTA)`= "L1",
+    `non-EU international student_GTA whose English is the second language (L2 GTA)` = "L2" )
+
+# Add additional header row
+myft <- add_header_row(
+  x = myft, values = c("", "EU students", "Home students", "non-EU international students"),
+  colwidths = c(1, 2, 1, 2))
+
+# Set caption
+myft <- set_caption(myft, "Table XXX.Proportion of respondents (%) selecting their use of each online technology type")
+
+
+```
+
+
+```{r format_flextable}
+# set a random theme, but borders etc can be customised. Look at vignette to prettify, or just export to word 
+myft <-theme_booktabs(myft)
+```
+
+```{r print_flextable}
+# export by copying
+print(myft, preview = "docx") # send a copy to clipboard and format there
+
+# Or export to new doc. I've created a new .docx in the current directory.
+save_as_docx("Q10_table" = myft, path = here("Q10_table.docx"))
+
+# Or if creating a large number of tables, create them in .rmd and then knit to word instead of html. This will create a single doc with all tables in one: https://ardata-fr.github.io/flextable-book/rendering.html#r-markdown-documents
+```
+

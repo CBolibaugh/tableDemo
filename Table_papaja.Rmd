@@ -1,0 +1,175 @@
+---
+title             : "The title"
+shorttitle        : "Title"
+
+author: 
+  - name          : "First Author"
+    affiliation   : "1"
+    corresponding : yes    # Define only one corresponding author
+    address       : "Postal address"
+    email         : "my@email.com"
+    role:         # Contributorship roles (e.g., CRediT, https://casrai.org/credit/)
+      - Conceptualization
+      - Writing - Original Draft Preparation
+      - Writing - Review & Editing
+  - name          : "Ernst-August Doelle"
+    affiliation   : "1,2"
+    role:
+      - Writing - Review & Editing
+
+affiliation:
+  - id            : "1"
+    institution   : "Wilhelm-Wundt-University"
+  - id            : "2"
+    institution   : "Konstanz Business School"
+
+authornote: |
+  Add complete departmental affiliations for each author here. Each new line herein must be indented, like this line.
+
+  Enter author note here.
+
+abstract: |
+  One or two sentences providing a **basic introduction** to the field,  comprehensible to a scientist in any discipline.
+  
+  Two to three sentences of **more detailed background**, comprehensible  to scientists in related disciplines.
+  
+  One sentence clearly stating the **general problem** being addressed by  this particular study.
+  
+  One sentence summarizing the main result (with the words "**here we show**" or their equivalent).
+  
+  Two or three sentences explaining what the **main result** reveals in direct comparison to what was thought to be the case previously, or how the  main result adds to previous knowledge.
+  
+  One or two sentences to put the results into a more **general context**.
+  
+  Two or three sentences to provide a **broader perspective**, readily comprehensible to a scientist in any discipline.
+  
+  <!-- https://tinyurl.com/ybremelq -->
+  
+keywords          : "keywords"
+wordcount         : "X"
+
+bibliography      : ["r-references.bib"]
+
+floatsintext      : no
+figurelist        : no
+tablelist         : no
+footnotelist      : no
+linenumbers       : no
+mask              : no
+draft             : no
+
+documentclass     : "apa6"
+classoption       : "man"
+output            : papaja::apa6_pdf
+---
+
+```{r setup, include = FALSE}
+library("papaja")
+library("tidyverse")
+library("here")
+r_refs("r-references.bib")
+```
+
+```{r analysis-preferences}
+# Seed for random number generation
+set.seed(42)
+knitr::opts_chunk$set(cache.extra = knitr::rand_seed)
+```
+
+```{r load_data, message=FALSE, warning=FALSE, include=FALSE}
+# Load in the GTA_data.csv dataset
+GTA_data <- read_csv(here("example_GTA_data.csv")) # have added here to make relative path loading 
+```
+
+```{r set_classes}
+GTA_data$Q2.9_student_type <- as.factor(GTA_data$Q2.9_student_type)
+GTA_data$Q2.10_language <- as.factor(GTA_data$Q2.10_language)
+GTA_data$Participant <- as.factor(GTA_data$Participant)
+GTA_data$deletion_type <- as.factor(GTA_data$deletion_type)
+```
+
+```{r crosstabs_tally}
+# Create a small df holding crosstab totals with values filtered
+groupCount <- GTA_data %>% 
+  filter(deletion_type == 0) %>% 
+  group_by(Q2.9_student_type, Q2.10_language) %>% tally()
+
+```
+
+```{r occurrence_tally}
+# Tally the number of occurrences for each cross-tabs cell, using purrr style notation
+Q10Tally <- GTA_data %>%
+  filter(deletion_type == 0) %>% 
+  group_by(Q2.9_student_type, Q2.10_language) %>%
+  summarise(across(starts_with("Q3.10"),  ~ sum(.x, na.rm = TRUE), .names = "{.col}"))
+```
+
+```{r output_join}
+# Join dataframes, generate the final output column with proportion and percentage in brackets, with the prefix concat_, assign to new df called Q10
+Q10 <- right_join(Q10Tally, groupCount) %>%
+  mutate(across(starts_with("Q3.10"),
+                ~paste0(.x, "/", n, " (", round(.x/n*100),"%",")"),
+                .names = "concat_{.col}"))
+
+
+```
+
+```{r output_reshape}
+# First get data in long format, and then regroup in wide by the two grouping variables
+wideQ10 <- Q10 %>% select(Q2.9_student_type, Q2.10_language, starts_with("concat")) %>%
+  pivot_longer(
+    cols = starts_with("concat")
+  ) %>% pivot_wider(
+    names_from = c(Q2.9_student_type, Q2.10_language)
+    ) 
+
+
+# Remove concat_ prefix with stringr package
+wideQ10$name <- str_remove(wideQ10$name, "concat_")
+
+# Remove unused item.
+wideQ10 <- wideQ10 %>% filter(name != 'Q3.10_9_technology_use_count')
+```
+
+# Methods
+
+We report how we determined our sample size, all data exclusions (if any), all manipulations, and all measures in the study. <!-- 21-word solution (Simmons, Nelson & Simonsohn, 2012; retrieved from http://ssrn.com/abstract=2160588) -->
+
+## Participants
+
+## Material
+
+## Procedure
+
+## Data analysis
+
+We used `r cite_r("r-references.bib")` for all our analyses.
+
+# Results
+
+```{r print_table}
+#format in APA table from papaja and knit to pdf (note you can further format column alignment etc. following the vignette)
+apa_table(
+  wideQ10,
+  col.names = c("","L1","L2","L1", "L1", "L2"),
+  col_spanners = list("EU students"= c(2, 3), "Home students"= c(4, 4), "non-EU international students"= c(5, 6)),
+  caption = "Proportion of respondents (%) selecting their use of each online technology type",
+  landscape = TRUE
+  )
+```
+
+# Discussion
+
+\newpage
+
+# References
+
+```{=tex}
+\begingroup
+\setlength{\parindent}{-0.5in}
+\setlength{\leftskip}{0.5in}
+```
+::: {#refs custom-style="Bibliography"}
+:::
+
+\endgroup
