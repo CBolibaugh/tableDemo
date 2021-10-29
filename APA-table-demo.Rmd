@@ -2,14 +2,14 @@
 title: "APA table demo"
 author: "Cylcia Bolibaugh"
 date: "23/09/2021"
-output: html_notebook
-      
+output:
+  html_document:
+    df_print: paged
 ---
 
 ```{r setup}
 knitr::opts_chunk$set(echo = TRUE,  message=FALSE, warning=FALSE)
 # install any missing packages first
-library("papaja")
 library("tidyverse")
 library("here")
 library("flextable")
@@ -28,7 +28,7 @@ GTA_data$Q2.10_language <- as.factor(GTA_data$Q2.10_language)
 GTA_data$Participant <- as.factor(GTA_data$Participant)
 GTA_data$deletion_type <- as.factor(GTA_data$deletion_type)
 ```
-A friend wants to generate his APA style summary tables from r to a word output. An example of his desired output table is in the repo (example_APA analysis.xls) 
+David wants to generate his APA style summary tables from r to a word output. An example of his desired output table is in the repo (example_APA analysis.xls) 
 
 ## Overall aim
 In order to generate the table, I will need to extract the numerator, denominator, derive the percent, and glue these into a single cell, for each question item. I will then need to reshape the dataframe so it is in the desired format, with values displayed under nested group headings. Finally, I will use a table package to format headers etc and render in word/pdf.
@@ -37,11 +37,13 @@ In order to generate the table, I will need to extract the numerator, denominato
 ### pseudocode - what needs to happen
 1) extract denominators - tally the total number of cases grouped by student type, and language and assign to a df
 2) extract numerators - tally number of cases for each variable when grouped by student type, and language, and assign to a df
-3) derive the percentage - join the two dataframes and create a new variable (percent) using mutate
+3) derive the percentage - join the two dataframes and create a new variable (percent) using mutate*
 4) 'glue' all values into a single cell - concatenate the numerator, denominator and percent
 5) run this workflow across all Q.10 variables
 6) reshape the dataframe so it is in the desired format - pivot from wide to long to wide again  
 7) send to flextable
+
+*NB I created separate dfs in steps 1 and 2 for expository purposes, but instead of creating 2 dfs, you could simply use add_tally() to the same df you use in step 2.
 
 ```{r crosstabs_tally}
 # Create a small df holding crosstab totals with values filtered
@@ -67,6 +69,14 @@ Q10 <- right_join(Q10Tally, groupCount) %>%
                 .names = "concat_{.col}"))
 
 
+```
+
+Instead of creating two dataframes as above:
+```{r}
+Q10Tally_v2 <- GTA_data %>%
+  filter(deletion_type == 0) %>% 
+  group_by(Q2.9_student_type, Q2.10_language) %>%
+  summarise(across(starts_with("Q3.10"),  ~ sum(.x, na.rm = TRUE), .names = "{.col}")) %>% add_count()
 ```
 
 

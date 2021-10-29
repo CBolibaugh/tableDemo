@@ -12,53 +12,90 @@ output: html_document
 # Please install the packages below if needed
 library(tidyverse)
 library(broom)
-library(tibble)
-library(QuantPsyc)
-library(Hmisc)
-library(car)
-library(broom)
-library(lme4)
-library(lmerTest)
-library(afex)
-library(Matrix)
-library(MuMIn)
-library(piecewiseSEM)
-library(ggbeeswarm)
-library(tidyverse)
-library(ggplot2)
-library(ggtext)
-library(ordinal)
-library(mvord)
-library(mixor)
-library(rcompanion)
-library(gridExtra)
-library(cowplot)
-library(ggplot2)
-library(hrbrthemes)
-library(dplyr)
-library(tidyr)
-library(viridis)
-library(psych)
-library(psych)
-library(MBESS)
-library(ufs)
-library(GPArotation)
-library(EnvStats)
-library(olsrr)
-library(coefficientalpha)
+library(here)
+library(tidylog)
+#library(tibble)
+#library(QuantPsyc)
+#library(Hmisc)
+#library(car)
+#library(broom)
+#library(lme4)
+#library(lmerTest)
+#library(afex)
+#library(Matrix)
+#library(MuMIn)
+#library(piecewiseSEM)
+#library(ggbeeswarm)
+#library(tidyverse)
+#library(ggplot2)
+#library(ggtext)
+#library(ordinal)
+#library(mvord)
+#library(mixor)
+#library(rcompanion)
+#library(gridExtra)
+#library(cowplot)
+#library(ggplot2)
+#library(hrbrthemes)
+#library(dplyr)
+#library(tidyr)
+#library(viridis)
+#library(psych)
+#library(psych)
+#library(MBESS)
+#library(ufs)
+#library(GPArotation)
+#library(EnvStats)
+#library(olsrr)
+#library(coefficientalpha)
 
 ```
 
 # Load in the data
 
-```{r warning=F, message=F, echo=T}
+```{r loadData warning=F, message=F, echo=T}
 
 # Load in the GTA_data.csv dataset
-GTA_data <- read_csv("~/example_GTA_data.csv")
+GTA_data <- read_csv(here("example_GTA_data.csv")) # have added here to make relative path loading 
 
+# script below executes code for variables that aren't included in .csv. Run Skimr to get a quick check of descriptives
+skimr::skim(GTA_data)
+
+# Response data only includes Q3.10_1 through Q3.10_9
+
+```
+
+
+
+
+```{r dataProcess, warning=F, message=F, echo=T}
 # Convert characters to factors
-GTA_data <- as.data.frame(strings2factors(GTA_data))
 
+# GTA_data <- as.data.frame(strings2factors(GTA_data))  load car here only to avoid heavy dependencies
+GTA_data<- as.data.frame(car::strings2factors(GTA_data))
+
+
+# practice variables
+GTA_data$Q3.10_1_live_poll <- as.numeric(GTA_data$Q3.10_1_live_poll)
+GTA_data$Q3.10_2_breakout_rooms <- as.numeric(GTA_data$Q3.10_2_breakout_rooms)	
+GTA_data$Q3.10_3_online_quizzes <- as.numeric(GTA_data$Q3.10_3_online_quizzes)	
+GTA_data$Q3.10_4_digital_wall <- as.numeric(GTA_data$Q3.10_4_digital_wall)
+GTA_data$Q3.10_5_shared_docs <- as.numeric(GTA_data$Q3.10_5_shared_docs)
+GTA_data$Q3.10_6_discussion_boards <- as.numeric(GTA_data$Q3.10_6_discussion_boards)	
+GTA_data$Q3.10_7_online_assignments <- as.numeric(GTA_data$Q3.10_7_online_assignments)
+GTA_data$Q3.10_8_other_provided <- as.numeric(GTA_data$Q3.10_8_other_provided)
+GTA_data$Q3.10_9_technology_use_count <- as.numeric(GTA_data$Q3.10_9_technology_use_count)
+
+# Check dataset
+str(GTA_data) # added str to check variable classes
+
+# Noticed that `Participant` and `deletion_type` are numeric. Participant should be a factor, and possibly deletion_type as well.
+GTA_data$Participant <- as.factor(GTA_data$Participant)
+GTA_data$deletion_type <- as.factor(GTA_data$deletion_type)
+```
+
+```{r notIncluded, eval=FALSE, message=FALSE, include=FALSE, warning=F}
+# These variables are not included in example .csv. I've moved them here.
 # Change numeric variables back to numeric
 GTA_data$Q3.1_1_agency_express_ideas_opinions_teaching <- as.numeric(GTA_data$Q3.1_1_agency_express_ideas_opinions_teaching)	
 GTA_data$Q3.1_2_agency_free_do_job <- as.numeric(GTA_data$Q3.1_2_agency_free_do_job)	
@@ -85,22 +122,7 @@ GTA_data$Q3.6_2_competence_student_belief_online <- as.numeric(GTA_data$Q3.6_2_c
 GTA_data$Q3.7_1_competence_students_critical_in_person <- as.numeric(GTA_data$Q3.7_1_competence_students_critical_in_person)
 GTA_data$Q3.7_2_competence_students_critical_online <- as.numeric(GTA_data$Q3.7_2_competence_students_critical_online)	
 GTA_data$Q3.7_3_COMPETENCE_MEAN <- as.numeric(GTA_data$Q3.7_3_COMPETENCE_MEAN)
-# practice variables
-GTA_data$Q3.10_1_live_poll <- as.numeric(GTA_data$Q3.10_1_live_poll)
-GTA_data$Q3.10_2_breakout_rooms <- as.numeric(GTA_data$Q3.10_2_breakout_rooms)	
-GTA_data$Q3.10_3_online_quizzes <- as.numeric(GTA_data$Q3.10_3_online_quizzes)	
-GTA_data$Q3.10_4_digital_wall <- as.numeric(GTA_data$Q3.10_4_digital_wall)
-GTA_data$Q3.10_5_shared_docs <- as.numeric(GTA_data$Q3.10_5_shared_docs)
-GTA_data$Q3.10_6_discussion_boards <- as.numeric(GTA_data$Q3.10_6_discussion_boards)	
-GTA_data$Q3.10_7_online_assignments <- as.numeric(GTA_data$Q3.10_7_online_assignments)
-GTA_data$Q3.10_8_other_provided <- as.numeric(GTA_data$Q3.10_8_other_provided)
-GTA_data$Q3.10_9_technology_use_count <- as.numeric(GTA_data$Q3.10_9_technology_use_count)
-
-# Check dataset
-GTA_data
-
 ```
-
 # Descriptive statistics: Practice by home vs international (EU/non, L1/L2)
 
 ```{r warning=F, message=F, echo=T}
